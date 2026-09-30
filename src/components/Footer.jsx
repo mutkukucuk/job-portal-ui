@@ -142,14 +142,30 @@ const Footer = () => {
 
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm text-gray-400 mb-6 md:mb-0">
-              <a className="group relative hover:text-white transition-colors duration-300">
-                <span className="relative z-10">Privacy Policy</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-2"></div>
-              </a>
-              <a className="group relative hover:text-white transition-colors duration-300">
-                <span className="relative z-10">Terms of Service</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-2"></div>
-              </a>
+              <Tooltip
+                title="Privacy Policy"
+                content="We only collect the information you provide, like your profile, applications, and job postings, and use it to connect job seekers with employers. We never sell your personal data."
+              >
+                <button
+                  type="button"
+                  className="group relative hover:text-white focus:text-white transition-colors duration-300"
+                >
+                  <span className="relative z-10">Privacy Policy</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-2"></div>
+                </button>
+              </Tooltip>
+              <Tooltip
+                title="Terms of Service"
+                content="By using JobPortal you agree to provide accurate information, post only genuine job listings, and respect other users. We may remove content or accounts that violate these terms."
+              >
+                <button
+                  type="button"
+                  className="group relative hover:text-white focus:text-white transition-colors duration-300"
+                >
+                  <span className="relative z-10">Terms of Service</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-2"></div>
+                </button>
+              </Tooltip>
               <Tooltip
                 title="Cookie Policy"
                 content="We use essential cookies and local storage to keep you signed in and remember your saved jobs and preferences. We don't use third-party tracking cookies."
