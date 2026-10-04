@@ -10,7 +10,7 @@ Job seekers search, save and apply for jobs. Employers post jobs and review appl
 ![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
 ![React Router](https://img.shields.io/badge/React_Router-7-CA4245?logo=reactrouter&logoColor=white)
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![License: MIT-0](https://img.shields.io/badge/License-MIT--0-green.svg)
 
 ![JobPortal home page demo in dark mode: searching for a job, then scrolling through featured jobs and top companies](docs/homepage.gif)
 
@@ -237,6 +237,6 @@ The full conventions are in [CLAUDE.md](CLAUDE.md).
 
 ## License
 
-Released under the [MIT License](LICENSE).
+Released under the [MIT No Attribution License (MIT-0)](LICENSE). Use, copy, modify and distribute the code for any purpose, with no attribution required.
 
 Company names and logos in the mock data belong to their respective owners and are used for demonstration only.
