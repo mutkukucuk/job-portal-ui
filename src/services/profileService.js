@@ -5,14 +5,14 @@ const getCurrentUserId = () => {
   return user?.userId || user?.id;
 };
 
-const getStorageKey = () => `userProfile_${getCurrentUserId()}`;
+const getStorageKey = (userId = getCurrentUserId()) => `userProfile_${userId}`;
 
 /**
- * Get the current user's profile
+ * Get a user's profile (defaults to the current user)
  */
-export const getProfile = async () => {
+export const getProfile = async (userId) => {
   await delay();
-  const data = localStorage.getItem(getStorageKey());
+  const data = localStorage.getItem(getStorageKey(userId));
   return data ? JSON.parse(data) : null;
 };
 

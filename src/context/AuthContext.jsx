@@ -205,7 +205,7 @@ export const AuthProvider = ({ children }) => {
       if (foundUser.role === 'ROLE_JOB_SEEKER') {
         try {
           const { getProfile } = await import('../services/profileService');
-          const profileData = await getProfile();
+          const profileData = await getProfile(foundUser.id);
 
           const isComplete = !!(
             profileData &&
