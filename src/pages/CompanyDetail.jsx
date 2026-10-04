@@ -131,11 +131,11 @@ const CompanyDetail = () => {
             </div>
           </nav>
 
-          <div className="bg-white dark:bg-gray-800 backdrop-blur-xl rounded-3xl shadow-2xl border-2 border-gray-200 dark:border-gray-700 p-8">
+          <div className="bg-white dark:bg-gray-800 backdrop-blur-xl rounded-3xl shadow-2xl border-2 border-gray-200 dark:border-gray-700 p-6 sm:p-8">
             <div className="flex flex-col lg:flex-row lg:items-start justify-between mb-8">
               <div className="flex-1">
-                <div className="flex items-center space-x-6 mb-6">
-                  <div className="p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-3xl w-32 h-32 flex items-center justify-center">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-6">
+                  <div className="p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-3xl w-32 h-32 shrink-0 flex items-center justify-center">
                     <img
                       src={company.logo}
                       alt={`${company.name} logo`}
@@ -156,7 +156,7 @@ const CompanyDetail = () => {
                     <p className="text-xl text-primary-600 dark:text-primary-400 font-semibold mb-4">
                       {company.industry}
                     </p>
-                    <div className="flex items-center space-x-6 mb-4">
+                    <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-4">
                       <div className="flex items-center">
                         <div className="flex mr-2">
                           {renderStars(company.rating)}
@@ -208,7 +208,7 @@ const CompanyDetail = () => {
         {/* Navigation Tabs */}
         <div className="mb-8">
           <div className="bg-white dark:bg-gray-800 backdrop-blur-xl rounded-2xl shadow-lg border-2 border-gray-200 dark:border-gray-700 p-2">
-            <nav className="flex space-x-2">
+            <nav className="flex gap-2 overflow-x-auto">
               {[
                 { id: 'overview', label: 'Overview', icon: '🏢' },
                 { id: 'jobs', label: `Jobs (${companyJobs.length})`, icon: '💼' },
@@ -218,7 +218,7 @@ const CompanyDetail = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
+                  className={`flex shrink-0 items-center space-x-2 whitespace-nowrap px-4 sm:px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
                     activeTab === tab.id
                       ? 'bg-primary-600 text-white shadow-lg'
                       : 'text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20'
