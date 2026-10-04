@@ -700,15 +700,25 @@ const jobDescriptionTemplates = {
   ],
 };
 
+// Seeded PRNG (mulberry32) so generated data stays the same across reloads
+const MOCK_DATA_SEED = 20251004;
+const createRandom = (seed) => () => {
+  seed = (seed + 0x6d2b79f5) | 0;
+  let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+};
+const random = createRandom(MOCK_DATA_SEED);
+
 // Random utility functions
 const getRandomItem = (array) =>
-  array[Math.floor(Math.random() * array.length)];
+  array[Math.floor(random() * array.length)];
 const getRandomItems = (array, count) => {
-  const shuffled = [...array].sort(() => 0.5 - Math.random());
+  const shuffled = [...array].sort(() => 0.5 - random());
   return shuffled.slice(0, count);
 };
 const getRandomNumber = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
+  Math.floor(random() * (max - min + 1)) + min;
 const getRandomSalary = (category, level) => {
   const range = salaryRanges[category][level];
   const min = range.min + getRandomNumber(-10, 10);
@@ -728,7 +738,7 @@ export const generateJobs = (count = 1000) => {
     const salary = getRandomSalary(category, level);
     const workType = getRandomItem(workTypes);
     const isRemote =
-      workType === "Remote" || (workType === "Hybrid" && Math.random() > 0.5);
+      workType === "Remote" || (workType === "Hybrid" && random() > 0.5);
 
     const job = {
       id: i,
@@ -761,8 +771,8 @@ export const generateJobs = (count = 1000) => {
         Date.now() + getRandomNumber(7, 60) * 24 * 60 * 60 * 1000
       ).toISOString(),
       applicationsCount: getRandomNumber(0, 500),
-      featured: Math.random() > 0.85,
-      urgent: Math.random() > 0.9,
+      featured: random() > 0.85,
+      urgent: random() > 0.9,
       remote: isRemote,
       companyId: companies.findIndex((c) => c.name === company.name) + 1,
     };
