@@ -85,6 +85,7 @@ style: fix spacing on mobile job list
 ### General
 
 - **No TypeScript** — plain JSX throughout; do not add `.ts`/`.tsx` files
+- **Tabs for indentation** — never spaces
 - **Functional components only** — no class components
 - **Default exports** for components — one component per file
 - Keep components focused — extract reusable pieces into `src/components/`
