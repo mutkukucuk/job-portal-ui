@@ -12,7 +12,7 @@ Job seekers search, save and apply for jobs. Employers post jobs and review appl
 ![React Router](https://img.shields.io/badge/React_Router-7-CA4245?logo=reactrouter&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
-![JobPortal home page in dark mode](docs/screenshots/home.png)
+![JobPortal home page demo in dark mode: searching for a job, then scrolling through featured jobs and top companies](docs/homepage.gif)
 
 </div>
 
@@ -115,6 +115,8 @@ All screenshots are taken in dark mode with the built-in mock data.
 
 ### Installation
 
+![Terminal demo: cloning the repo, installing dependencies, starting the dev server and building for production](docs/setup.gif)
+
 ```bash
 git clone https://github.com/mutkukucuk/job-portal-ui.git
 cd job-portal-ui
@@ -123,6 +125,13 @@ npm run dev
 ```
 
 Open http://localhost:5173 in your browser.
+
+To create and preview a production build:
+
+```bash
+npm run build     # outputs to dist/
+npm run preview   # serves dist/ locally
+```
 
 No backend, database or environment variables are needed. All data comes from the mock layer and is saved in your browser's `localStorage`.
 
@@ -154,7 +163,7 @@ Sign in with one of these mock accounts. You can also click **Show Demo Credenti
 ```
 job-portal-ui/
 ├── public/                 # Static assets (favicon, company logos)
-├── docs/screenshots/       # README screenshots
+├── docs/                   # README demo GIFs and screenshots
 ├── src/
 │   ├── components/         # Shared UI: Navbar, Footer, Layout, ProtectedRoute, PageLoader…
 │   ├── context/            # Core contexts: AuthContext, JobContext, ThemeContext
