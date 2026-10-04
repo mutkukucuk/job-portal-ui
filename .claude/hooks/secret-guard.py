@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PreToolUse hook — blocks Edit/Write/NotebookEdit tool calls that contain hardcoded secrets.
+PreToolUse hook — blocks Edit/MultiEdit/Write/NotebookEdit tool calls that contain hardcoded secrets.
 
 Exit codes:
   0  → clean, write proceeds
@@ -46,6 +46,12 @@ def extract_content(tool: str, inp: dict) -> tuple:
         return inp.get("file_path", ""), inp.get("content", "")
     if tool == "Edit":
         return inp.get("file_path", ""), inp.get("new_string", "")
+    if tool == "MultiEdit":
+        edits = inp.get("edits", [])
+        if not isinstance(edits, list):
+            return "", ""
+        content = "\n".join(e.get("new_string", "") for e in edits if isinstance(e, dict))
+        return inp.get("file_path", ""), content
     if tool == "NotebookEdit":
         return inp.get("notebook_path", ""), inp.get("new_source", "")
     return "", ""

@@ -1,4 +1,19 @@
 {
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Edit(./.env)",
+      "Edit(./.env.*)",
+      "Bash(cat .env*)",
+      "Bash(less .env*)",
+      "Bash(head .env*)",
+      "Bash(tail .env*)"
+    ],
+    "ask": [
+      "mcp__chrome-devtools__evaluate_script"
+    ]
+  },
   "enabledPlugins": {
     "commit-commands@claude-plugins-official": true
   },
@@ -42,6 +57,15 @@
           {
             "type": "command",
             "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/protect-bash.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__chrome-devtools__navigate_page|mcp__chrome-devtools__new_page",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/protect-browser.sh"
           }
         ]
       }

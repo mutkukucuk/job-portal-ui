@@ -30,6 +30,9 @@ esac
 
 case "/$FILE_PATH/" in
 	*/.git/*) block "git internals" ;;
+	*/.claude/hooks/*) block "safety hook" ;;
+	*/.claude/settings.json/ | */.claude/settings.local.json/) block "claude code settings" ;;
+	*/.mcp.json/) block "mcp server config" ;;
 esac
 
 exit 0

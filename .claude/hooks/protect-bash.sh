@@ -20,7 +20,7 @@ COMMAND=$(jq -r '.tool_input.command // empty')
 
 SEP='(^|[;&|[:space:]])'
 PKG_MUTATION="${SEP}(npm|pnpm|yarn)[[:space:]]+(install|i|add|update|up|upgrade|uninstall|remove|rm|ci|dedupe|audit[[:space:]]+fix)([[:space:]]|\$)"
-PROTECTED='(package-lock\.json|(^|[/[:space:]])\.env([.][A-Za-z0-9_-]+)?([[:space:]]|$))'
+PROTECTED='(package-lock\.json|(^|[/[:space:]])\.env([.][A-Za-z0-9_-]+)?([[:space:]]|$)|\.claude/hooks/|\.claude/settings(\.local)?\.json|\.mcp\.json)'
 WRITE_OPS="(>|${SEP}(tee|rm|mv|cp|truncate)[[:space:]]|sed[[:space:]]+-[A-Za-z]*i)"
 
 if grep -Eq "$PKG_MUTATION" <<<"$COMMAND"; then
@@ -29,7 +29,7 @@ if grep -Eq "$PKG_MUTATION" <<<"$COMMAND"; then
 fi
 
 if grep -Eq "$PROTECTED" <<<"$COMMAND" && grep -Eq "$WRITE_OPS" <<<"$COMMAND"; then
-	echo "Blocked: command appears to modify a protected file (package-lock.json / .env). Ask the user first." >&2
+	echo "Blocked: command appears to modify a protected file (package-lock.json / .env / claude config). Ask the user first." >&2
 	exit 2
 fi
 
