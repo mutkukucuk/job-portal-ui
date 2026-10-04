@@ -335,9 +335,11 @@ export const JobProvider = ({ children }) => {
   };
 
   // Get all jobs (static + posted) - synchronous helper
+  // staticJobs may already include posted jobs (fetchAllJobs adds them), so skip duplicates
   const getAllJobsSync = (staticJobs) => {
     const globalPostedJobs = JSON.parse(localStorage.getItem('globalPostedJobs') || '[]');
-    return [...staticJobs, ...globalPostedJobs];
+    const knownIds = new Set(staticJobs.map(job => job.id));
+    return [...staticJobs, ...globalPostedJobs.filter(job => !knownIds.has(job.id))];
   };
 
   const getJobByIdSync = (jobId, staticJobs) => {
