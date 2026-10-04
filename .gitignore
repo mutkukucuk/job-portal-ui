@@ -1,4 +1,26 @@
+# This repo is public. Anything committed here is visible to everyone and
+# stays in git history even after deletion, so keep secrets, personal data
+# and machine-specific files out.
+
+# ---------------------------------------------------------------------------
+# Dependencies & build output
+# ---------------------------------------------------------------------------
+node_modules
+dist
+dist-ssr
+build
+coverage
+*.tsbuildinfo
+.vite
+.eslintcache
+.stylelintcache
+.cache
+.parcel-cache
+.turbo
+
+# ---------------------------------------------------------------------------
 # Logs
+# ---------------------------------------------------------------------------
 logs
 *.log
 npm-debug.log*
@@ -7,18 +29,103 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# ---------------------------------------------------------------------------
+# Environment variables & local config (Vite loads .env.*.local)
+# Commit only templates such as .env.example with placeholder values.
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
 *.local
 
-# Editor directories and files
+# ---------------------------------------------------------------------------
+# Secrets, keys & certificates
+# ---------------------------------------------------------------------------
+*.pem
+*.key
+*.crt
+*.cer
+*.der
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.gpg
+*.asc
+id_rsa*
+id_ed25519*
+id_ecdsa*
+*.ppk
+secrets.json
+secrets.*.json
+credentials.json
+service-account*.json
+*-credentials.json
+*.secret
+.htpasswd
+
+# Package manager auth tokens
+.npmrc
+.yarnrc
+.yarnrc.yml
+.netrc
+
+# Cloud / deploy CLIs (may store tokens)
+.vercel
+.netlify
+.firebase
+firebase-debug.log
+.aws
+.azure
+.gcloud
+
+# ---------------------------------------------------------------------------
+# Claude Code — commit shared config, ignore personal/local state
+# (.claude/settings.json, hooks, skills and .mcp.json stay tracked)
+# ---------------------------------------------------------------------------
+.claude/settings.local.json
+.claude/worktrees/
+.claude/*.local.*
+CLAUDE.local.md
+
+# Generated reports can contain author names and emails (e.g. /investigate-change)
+change-investigation-report*.md
+*-investigation-report*.md
+
+# ---------------------------------------------------------------------------
+# Editor & OS files
+# ---------------------------------------------------------------------------
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*~
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ---------------------------------------------------------------------------
+# Local scratch, backups & dumps
+# ---------------------------------------------------------------------------
+tmp
+temp
+*.tmp
+*.bak
+*.orig
+*.rej
+*.swp
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.har
