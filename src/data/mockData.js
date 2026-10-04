@@ -777,6 +777,7 @@ export const generateJobs = (count = 1000) => {
 export const generateCompanies = (jobsData = []) => {
   return companies.map((company, index) => {
     const companyJobs = jobsData.filter((job) => job.company === company.name);
+    const slug = company.name.toLowerCase().replace(/[^a-z0-9]/g, "");
 
     return {
       id: index + 1,
@@ -804,19 +805,11 @@ export const generateCompanies = (jobsData = []) => {
         "Learning-focused",
         "Flexible",
       ].slice(0, getRandomNumber(3, 6)),
-      website: `https://www.${company.name
-        .toLowerCase()
-        .replace(/\s+/g, "")}.com`,
+      website: `https://www.${slug}.com`,
       socialMedia: {
-        linkedin: `https://linkedin.com/company/${company.name
-          .toLowerCase()
-          .replace(/\s+/g, "")}`,
-        twitter: `https://twitter.com/${company.name
-          .toLowerCase()
-          .replace(/\s+/g, "")}`,
-        facebook: `https://facebook.com/${company.name
-          .toLowerCase()
-          .replace(/\s+/g, "")}`,
+        linkedin: `https://linkedin.com/company/${slug}`,
+        twitter: `https://twitter.com/${slug}`,
+        facebook: `https://facebook.com/${slug}`,
       },
     };
   });
