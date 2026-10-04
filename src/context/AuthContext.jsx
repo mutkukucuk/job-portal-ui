@@ -152,14 +152,16 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // Save user to localStorage whenever user changes
+  // Skip while loading so the initial null user doesn't wipe the saved session
   useEffect(() => {
+    if (isLoading) return;
     if (user) {
       localStorage.setItem('jobPortalUser', JSON.stringify(user));
     } else {
       localStorage.removeItem('jobPortalUser');
       localStorage.removeItem('authToken');
     }
-  }, [user]);
+  }, [user, isLoading]);
 
   const login = async (email, password) => {
     setIsLoading(true);
