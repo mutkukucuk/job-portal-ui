@@ -27,12 +27,9 @@ const SavedJobs = () => {
     await unsaveJob(jobId);
   };
 
-  const handleQuickApply = (job) => {
-    const result = applyForJob(job);
-    if (result.success) {
-      // Could add a toast notification here
-      console.log('Application submitted successfully!');
-    } else {
+  const handleQuickApply = async (job) => {
+    const result = await applyForJob(job);
+    if (!result.success) {
       console.error(result.error);
     }
   };
