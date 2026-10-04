@@ -19,7 +19,6 @@ export const ThemeProvider = ({ children }) => {
     // Initialize theme from localStorage or default to light
     const saved = localStorage.getItem('job-portal-theme')
     const initialTheme = saved === 'dark' ? 'dark' : 'light'
-    console.log('Initializing theme:', initialTheme)
     setTheme(initialTheme)
     setIsInitialized(true)
   }, [])
@@ -28,7 +27,6 @@ export const ThemeProvider = ({ children }) => {
     if (!isInitialized) return
 
     const root = document.documentElement
-    console.log('Applying theme:', theme)
     
     // Remove both classes first
     root.classList.remove('light', 'dark')
@@ -38,13 +36,10 @@ export const ThemeProvider = ({ children }) => {
     
     // Save to localStorage
     localStorage.setItem('job-portal-theme', theme)
-    
-    console.log('DOM classes after update:', root.className)
   }, [theme, isInitialized])
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light'
-    console.log('Toggling theme from', theme, 'to', newTheme)
     setTheme(newTheme)
   }
 

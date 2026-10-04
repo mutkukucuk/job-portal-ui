@@ -25,7 +25,6 @@ export const JobsDataProvider = ({ children }) => {
   const loadJobs = useCallback(async (force = false) => {
     // Prevent multiple simultaneous fetches
     if (isFetchingRef.current) {
-      console.log('[JobsDataContext] Fetch already in progress, skipping...');
       return;
     }
 
@@ -34,17 +33,13 @@ export const JobsDataProvider = ({ children }) => {
     const cacheValid = lastFetchTime && (now - lastFetchTime) < CACHE_DURATION;
 
     if (!force && cacheValid) {
-      console.log('[JobsDataContext] Using cached data, cache is still valid');
       return;
     }
 
     try {
       isFetchingRef.current = true;
       setLoading(true);
-      console.log('[JobsDataContext] Starting to fetch jobs...');
       const data = await fetchAllJobs();
-      console.log('[JobsDataContext] Fetched jobs:', data.length, 'jobs');
-      console.log('[JobsDataContext] Sample job:', data[0]);
       setJobs(data);
       setLastFetchTime(Date.now());
       setError(null);
@@ -66,7 +61,6 @@ export const JobsDataProvider = ({ children }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (!document.hidden) {
-        console.log('[JobsDataContext] Auto-refreshing data...');
         loadJobs();
       }
     }, CACHE_DURATION);
@@ -77,7 +71,6 @@ export const JobsDataProvider = ({ children }) => {
   // Refresh on window focus (when user returns to tab)
   useEffect(() => {
     const handleFocus = () => {
-      console.log('[JobsDataContext] Window focused, checking cache...');
       loadJobs();
     };
 
@@ -98,12 +91,10 @@ export const JobsDataProvider = ({ children }) => {
   };
 
   const forceRefresh = async () => {
-    console.log('[JobsDataContext] Force refresh requested');
     await loadJobs(true);
   };
 
   const updateJobApplicationsCount = (jobId, increment = true) => {
-    console.log(`[JobsDataContext] ${increment ? 'Incrementing' : 'Decrementing'} applications count for job ${jobId}`);
     setJobs(prevJobs =>
       prevJobs.map(job =>
         job.id === parseInt(jobId)

@@ -41,7 +41,6 @@ const Profile = () => {
     // Load profile data from backend every time user navigates to profile page
     const loadProfile = async () => {
       try {
-        console.log('[Profile] Fetching profile data from backend');
         const profileData = await getProfile();
 
         if (profileData && profileData.id) {
@@ -70,7 +69,6 @@ const Profile = () => {
           setFormData(loadedFormData);
         } else {
           // No profile yet, use user basic data
-          console.log('[Profile] No profile data found, using basic user data');
           const emptyFormData = {
             name: user?.name || '',
             email: user?.email || '',
@@ -228,7 +226,6 @@ const Profile = () => {
 
         if (updateProfileComplete) {
           updateProfileComplete(isComplete);
-          console.log('[Profile] Updated profileComplete flag to:', isComplete);
         }
 
         // Clear file states after successful upload
@@ -274,8 +271,6 @@ const Profile = () => {
   };
 
   const completeness = calculateProfileCompleteness(formData);
-
-  console.log('[FINAL COMPLETENESS DISPLAYED]', completeness);
 
   const tabs = [
     { id: 'basic', label: 'Basic Info', icon: '👤' },

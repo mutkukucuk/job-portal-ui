@@ -25,7 +25,6 @@ export const CompaniesProvider = ({ children }) => {
   const loadCompanies = useCallback(async (force = false) => {
     // Prevent multiple simultaneous fetches
     if (isFetchingRef.current) {
-      console.log('[CompaniesContext] Fetch already in progress, skipping...')
       return
     }
 
@@ -34,7 +33,6 @@ export const CompaniesProvider = ({ children }) => {
     const cacheValid = lastFetchTime && (now - lastFetchTime) < CACHE_DURATION
 
     if (!force && cacheValid) {
-      console.log('[CompaniesContext] Using cached data, cache is still valid')
       return
     }
 
