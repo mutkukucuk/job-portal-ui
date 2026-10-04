@@ -15,10 +15,9 @@ const Companies = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const companiesPerPage = 12
 
-  // Get unique industries, sizes, and locations for filters
+  // Get unique industries and sizes for filters
   const industries = [...new Set(companies.map(company => company.industry))].sort()
   const sizes = [...new Set(companies.map(company => company.size))].sort()
-  const locations = [...new Set(companies.flatMap(company => company.locations))].sort()
 
   // Enhanced companies with job counts
   const enhancedCompanies = useMemo(() => {

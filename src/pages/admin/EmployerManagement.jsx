@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { useTheme } from '../../context/ThemeContext';
 import { useCompanies } from '../../contexts/CompaniesContext';
 import { delay } from '../../utils/delay';
 
 const EmployerManagement = () => {
-  const { theme } = useTheme();
   const { companies: contextCompanies, loading: companiesLoading } = useCompanies();
   const [selectedCompanyId, setSelectedCompanyId] = useState('');
   const [error, setError] = useState('');

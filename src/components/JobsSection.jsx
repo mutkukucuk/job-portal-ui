@@ -1,12 +1,11 @@
 import { useState, useMemo } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useJobsData } from '../contexts/JobsDataContext'
 
 const JobsSection = () => {
   const [activeCategory, setActiveCategory] = useState('All')
   const [activeFilter, setActiveFilter] = useState('Recent')
   const [displayCount, setDisplayCount] = useState(6)
-  const navigate = useNavigate()
   const { jobs, loading } = useJobsData()
 
   const categories = ['All', 'Technology', 'Design', 'Marketing', 'Sales', 'Finance', 'Healthcare']

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useJobs } from '../context/JobContext';
 import { useAuth } from '../context/AuthContext';
 import { useJobsData } from '../contexts/JobsDataContext';
 import * as jobApplicationService from '../services/jobApplicationService';

@@ -6,7 +6,7 @@ import ConfirmationModal from '../components/ConfirmationModal';
 
 const AppliedJobs = () => {
   const { appliedJobs, withdrawApplication } = useJobs();
-  const { user, isJobSeeker, isAuthenticated, isLoading: authLoading } = useAuth();
+  const { isJobSeeker, isAuthenticated, isLoading: authLoading } = useAuth();
   const [notification, setNotification] = useState(null);
   const [showWithdrawModal, setShowWithdrawModal] = useState(false);
   const [jobToWithdraw, setJobToWithdraw] = useState(null);

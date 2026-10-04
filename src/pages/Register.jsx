@@ -114,14 +114,6 @@ const Register = () => {
     }
   };
 
-  const handleUserTypeChange = (e) => {
-    setFormData(prev => ({
-      ...prev,
-      userType: e.target.value,
-      company: ''
-    }));
-  };
-
   return (
     <div className={`min-h-[calc(100vh-5rem)] ${theme === 'dark' ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' : 'bg-gradient-to-br from-gray-50 via-white to-primary-50'} flex items-center justify-center px-4 py-12 relative`}>
       {/* Background Elements */}

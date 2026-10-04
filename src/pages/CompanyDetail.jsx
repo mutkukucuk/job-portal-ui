@@ -1,11 +1,10 @@
 import { useState, useEffect, useMemo } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useCompanies } from '../contexts/CompaniesContext'
 import { useJobsData } from '../contexts/JobsDataContext'
 
 const CompanyDetail = () => {
   const { id } = useParams()
-  const navigate = useNavigate()
   const { loading, getCompanyByName } = useCompanies()
   const { jobs } = useJobsData()
   const [company, setCompany] = useState(null)

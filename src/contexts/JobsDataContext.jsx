@@ -6,6 +6,7 @@ const JobsDataContext = createContext();
 // Cache duration in milliseconds (5 minutes)
 const CACHE_DURATION = 5 * 60 * 1000;
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useJobsData = () => {
   const context = useContext(JobsDataContext);
   if (!context) {

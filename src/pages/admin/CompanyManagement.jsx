@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { useTheme } from '../../context/ThemeContext';
 import { useCompanies } from '../../contexts/CompaniesContext';
 import { delay } from '../../utils/delay';
 
 const CompanyManagement = () => {
-  const { theme } = useTheme();
   const { companies: contextCompanies, loading: contextLoading, refetch } = useCompanies();
   const [editingCompanyId, setEditingCompanyId] = useState(null);
   const [formData, setFormData] = useState({

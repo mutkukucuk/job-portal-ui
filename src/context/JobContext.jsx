@@ -6,6 +6,7 @@ import * as jobApplicationService from '../services/jobApplicationService';
 
 const JobContext = createContext();
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useJobs = () => {
   const context = useContext(JobContext);
   if (!context) {

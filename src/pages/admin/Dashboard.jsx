@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useTheme } from '../../context/ThemeContext';
 import { useCompanies } from '../../contexts/CompaniesContext';
 
 const Dashboard = () => {
-  const { theme } = useTheme();
   const { companies } = useCompanies();
 
   const adminCards = [

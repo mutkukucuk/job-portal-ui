@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
-import { useTheme } from "../../context/ThemeContext";
+import { useState, useEffect, useCallback } from "react";
 import {
   fetchOpenContactMsgsWithPaginationAndSort,
   updateContactStatus,
 } from "../../services/contactService";
 
 const ContactMessages = () => {
-  const { theme } = useTheme();
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [expandedMessageId, setExpandedMessageId] = useState(null);
@@ -23,11 +21,7 @@ const ContactMessages = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [totalElements, setTotalElements] = useState(0);
 
-  useEffect(() => {
-    fetchMessages();
-  }, [sortBy, sortDir, pageNumber, pageSize]);
-
-  const fetchMessages = async () => {
+  const fetchMessages = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -53,7 +47,11 @@ const ContactMessages = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [sortBy, sortDir, pageNumber, pageSize]);
+
+  useEffect(() => {
+    fetchMessages();
+  }, [fetchMessages]);
 
   const handleRowClick = (messageId) => {
     setExpandedMessageId(expandedMessageId === messageId ? null : messageId);

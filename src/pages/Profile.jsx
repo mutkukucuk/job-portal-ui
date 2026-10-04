@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getProfile, updateProfile as updateProfileApi, getProfilePictureUrl } from '../services/profileService';
 
 const Profile = () => {
-  const { user, updateProfile, updateProfileComplete, isJobSeeker, isLoading: authLoading } = useAuth();
+  const { user, updateProfileComplete, isJobSeeker, isLoading: authLoading } = useAuth();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -25,7 +25,6 @@ const Profile = () => {
 
   const [profilePictureFile, setProfilePictureFile] = useState(null);
   const [resumeFile, setResumeFile] = useState(null);
-  const [skillInput, setSkillInput] = useState('');
   const [notification, setNotification] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('basic');
@@ -116,6 +115,8 @@ const Profile = () => {
     if (user) {
       loadProfile();
     }
+    // Keyed on userId so profile updates to the user object don't refetch and overwrite the form
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.userId, isJobSeeker, navigate, authLoading]);
 
   const showNotification = (message, type = 'success') => {
@@ -160,83 +161,6 @@ const Profile = () => {
       };
       reader.readAsDataURL(file);
     }
-  };
-
-  const addSkill = () => {
-    if (skillInput.trim() && !formData.skills.includes(skillInput.trim())) {
-      setFormData(prev => ({
-        ...prev,
-        skills: [...prev.skills, skillInput.trim()]
-      }));
-      setSkillInput('');
-    }
-  };
-
-  const removeSkill = (skillToRemove) => {
-    setFormData(prev => ({
-      ...prev,
-      skills: prev.skills.filter(skill => skill !== skillToRemove)
-    }));
-  };
-
-  const addEducation = () => {
-    setFormData(prev => ({
-      ...prev,
-      education: [...prev.education, {
-        id: Date.now(),
-        degree: '',
-        institution: '',
-        year: '',
-        description: ''
-      }]
-    }));
-  };
-
-  const updateEducation = (id, field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      education: prev.education.map(edu => 
-        edu.id === id ? { ...edu, [field]: value } : edu
-      )
-    }));
-  };
-
-  const removeEducation = (id) => {
-    setFormData(prev => ({
-      ...prev,
-      education: prev.education.filter(edu => edu.id !== id)
-    }));
-  };
-
-  const addWorkHistory = () => {
-    setFormData(prev => ({
-      ...prev,
-      workHistory: [...prev.workHistory, {
-        id: Date.now(),
-        company: '',
-        position: '',
-        startDate: '',
-        endDate: '',
-        description: '',
-        current: false
-      }]
-    }));
-  };
-
-  const updateWorkHistory = (id, field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      workHistory: prev.workHistory.map(work => 
-        work.id === id ? { ...work, [field]: value } : work
-      )
-    }));
-  };
-
-  const removeWorkHistory = (id) => {
-    setFormData(prev => ({
-      ...prev,
-      workHistory: prev.workHistory.filter(work => work.id !== id)
-    }));
   };
 
   const validateProfile = () => {
