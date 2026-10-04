@@ -90,6 +90,9 @@ firebase-debug.log
 .claude/*.local.*
 CLAUDE.local.md
 
+# MCP browser tooling output (snapshots, console logs, screenshots)
+.playwright-mcp/
+
 # Generated reports can contain author names and emails (e.g. /investigate-change)
 change-investigation-report*.md
 *-investigation-report*.md
