@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useCompanies } from '../../contexts/CompaniesContext';
 import { delay } from '../../utils/delay';
 
@@ -384,9 +384,9 @@ const CompanyManagement = () => {
                     </tr>
                   ) : (
                     companies.map((company) => (
-                      <>
+                      <Fragment key={company.id}>
                         {/* View Mode Row */}
-                        <tr key={company.id} className={editingCompanyId === company.id ? "bg-gray-100 dark:bg-gray-700" : "hover:bg-gray-50 dark:hover:bg-gray-700"}>
+                        <tr className={editingCompanyId === company.id ? "bg-gray-100 dark:bg-gray-700" : "hover:bg-gray-50 dark:hover:bg-gray-700"}>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-center">
                               {company.logo ? (
@@ -512,7 +512,7 @@ const CompanyManagement = () => {
                             </td>
                           </tr>
                         )}
-                      </>
+                      </Fragment>
                     ))
                   )}
                 </tbody>
